@@ -1,6 +1,7 @@
-from aiogram import Bot, Dispatcher , Z
+from aiogram import Bot, Dispatcher , F
 from aiogram import types
 from aiogram.filters import CommandStart
+from aiogram.filters import Command
 from config import token
 import asyncio
 
@@ -10,15 +11,15 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def handle_start(message: types.Message):
-    await message.answer(f"Welcome {message.from_user.full_name} ")
+    await message.answer(f"Welcome, {message.from_user.full_name} ")
 
-@dp.message(CommandStart("info"))
+@dp.message(Command("info", prefix="!/"))
 async def handle_info(message: types.Message):
-    await message.answer(f"this text {message.from_user.full_name} ")
+    await message.answer(text="This is a test bot for learning aiogram ")
 
 
 
-@dp.message(Z.photo)
+@dp.message(F.photo)
 async def handle_photo(message: types.Message):
     await message.copy_to(chat_id=message.chat.id)
 
