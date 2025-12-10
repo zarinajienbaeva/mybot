@@ -6,7 +6,6 @@ from routers import router
 my_bot = Bot(token=str(token))
 dp = Dispatcher()
 
-
 async def main():
     print("I am starting ...")
     dp.include_routers(router)
